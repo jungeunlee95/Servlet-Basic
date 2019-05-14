@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cafe24.web.WebUtil;
+import com.cafe24.mysite.action.main.MainActionFactory;
+import com.cafe24.web.mvc.Action;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
@@ -16,7 +17,12 @@ public class MainServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		WebUtil.forward(request, response, "/WEB-INF/views/main/index.jsp");
+		request.setCharacterEncoding("utf-8");
+
+		String actionName = request.getParameter("a");		
+		
+		Action action = new MainActionFactory().getAction(actionName);
+		action.execute(request, response);
 	}
 
 
