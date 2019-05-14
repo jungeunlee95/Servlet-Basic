@@ -12,7 +12,7 @@ import com.cafe24.mysite.action.guestbook.GuestbookActionFactory;
 import com.cafe24.web.mvc.Action;
 
 
-@WebServlet("/guestbook")
+// @WebServlet("/guestbook")
 public class GuestbookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cafe24.mysite.action.main.MainActionFactory;
 import com.cafe24.web.mvc.Action;
 
-@WebServlet("/main")
+// @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
