@@ -18,8 +18,8 @@ public class LogoutAction implements Action {
 		HttpSession session = request.getSession();
 		if(session != null && session.getAttribute("authUser") != null) {
 			// 로그아웃 처리
-			session.removeAttribute("authUser");
-			session.invalidate();
+			session.removeAttribute("authUser"); // UserVo 먼저 날리고
+			session.invalidate(); // 이것만 하면 시간지나면 없어짐 -> UserVo가 메모리 차지함
 		}
 
 		WebUtil.redirect(request, response, request.getContextPath());
