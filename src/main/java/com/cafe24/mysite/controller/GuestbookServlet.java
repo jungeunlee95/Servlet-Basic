@@ -19,7 +19,7 @@ public class GuestbookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
 		// post 방식 인코딩은 기본
-		request.setCharacterEncoding("utf-8");
+		// request.setCharacterEncoding("utf-8");-> fliter에서 처리
 
 		String actionName = request.getParameter("a");		
 		
