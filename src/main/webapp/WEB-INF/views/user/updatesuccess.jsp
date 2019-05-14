@@ -14,7 +14,7 @@
 		<div id="content">
 			<div id="user">
 				<p class="jr-success">
-					회원가입을 축하합니다. <br> <br> <a href="<%=request.getContextPath()%>/user?a=loginform">로그인하기</a>
+					회원정보가 성공적으로 변경되었습니다. <br> <br> <a href="<%=request.getContextPath()%>/user?a=loginform">로그인하기</a>
 				</p>
 			</div>
 		</div>

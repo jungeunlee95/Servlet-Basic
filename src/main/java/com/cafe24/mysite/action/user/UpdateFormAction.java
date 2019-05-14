@@ -28,11 +28,12 @@ public class UpdateFormAction implements Action {
 			return;
 		}
 		/////////////////////////////////////////////////////////////////
-		
+		 
 		Long userNo = authUser.getNo();
 		UserVo userVo = new UserDao().get(userNo);
+
 		request.setAttribute("userVo", userVo);
-		
+
 		WebUtil.forward(request, response, "/WEB-INF/views/user/updateform.jsp");
 	}
 
