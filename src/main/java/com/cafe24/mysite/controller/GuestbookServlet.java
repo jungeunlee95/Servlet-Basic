@@ -22,7 +22,6 @@ public class GuestbookServlet extends HttpServlet {
 		// request.setCharacterEncoding("utf-8");-> fliter에서 처리
 
 		String actionName = request.getParameter("a");		
-		
 		Action action = new GuestbookActionFactory().getAction(actionName);
 		action.execute(request, response);
 		
