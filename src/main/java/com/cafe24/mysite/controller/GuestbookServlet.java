@@ -20,14 +20,41 @@ public class GuestbookServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		String actionName = request.getParameter("a");
+		// post 방식 인코딩은 기본
+		request.setCharacterEncoding("utf-8");
+
+		String actionName = request.getParameter("a");		
 		// 사용자의 url 매핑
 		if("add".equals(actionName)) {
-
+			String name = request.getParameter("name");
+			String password = request.getParameter("password");
+			String contents = request.getParameter("contents");
+			
+			GuestbookVo vo = new GuestbookVo();
+			vo.setName(name);
+			vo.setPassword(password);
+			vo.setContents(contents);
+			
+			new GuestbookDao().insert(vo);
+			WebUtil.redirect(request, response, request.getContextPath() + "/guestbook");
 
 		} else if("deleteform".equals(actionName)) {
 			
+			String no = request.getParameter("no");
+			request.setAttribute("no", no);
+			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/deleteform.jsp");
+			
 		} else if("delete".equals(actionName)) {
+			String no = request.getParameter("no");
+			String password = request.getParameter("password");
+			
+			GuestbookVo vo = new GuestbookVo();
+			vo.setNo(Long.parseLong(no));
+			vo.setPassword(password);
+			
+			new GuestbookDao().delete(vo);
+			
+			WebUtil.redirect(request, response, request.getContextPath() + "/guestbook");
 			
 		} else{
 			// list action
