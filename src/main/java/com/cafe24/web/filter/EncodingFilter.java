@@ -8,8 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 
-//@WebFilter("/*")
+// 경로설정, 파라미터 설정
+// @WebFilter(value="/*", initParams=@WebInitParam(name="encoding", value="utf-8") )
 public class EncodingFilter implements Filter {
 
 	private String encoding;

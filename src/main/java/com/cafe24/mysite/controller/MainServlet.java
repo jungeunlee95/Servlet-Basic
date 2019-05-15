@@ -11,9 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.cafe24.mysite.action.main.MainActionFactory;
 import com.cafe24.web.mvc.Action;
 
-// @WebServlet("/main")
+//@WebServlet({"", "/main", "/index"})
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+
+	@Override
+	public void init() throws ServletException {
+		String configPath = getServletConfig().getInitParameter("config");
+		System.out.println("init() called : " + configPath);
+	}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
