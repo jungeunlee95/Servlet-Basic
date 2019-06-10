@@ -22,8 +22,8 @@ public class GuestbookDao {
 			conn = getConnection();
 
 
-			String sql = " delete from guestbook  " + 
-						"  where no = ? "
+			String sql = " delete from guestbook  " 
+						+ "  where no = ? "
 						+ " and password = ? ";
 			pstmt = conn.prepareStatement(sql);
 			
@@ -63,7 +63,11 @@ public class GuestbookDao {
 
 
 			String sql = " insert into guestbook  " + 
-						"  values(null, ?, ?, ?, now()) ";
+						"  values(default, ?, ?, ?, now()) ";
+			
+			// mariadb
+//			String sql = " insert into guestbook  " + 
+//					"  values(null, ?, ?, ?, now()) ";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, vo.getName());
@@ -103,10 +107,17 @@ public class GuestbookDao {
 		try {
 			conn = getConnection();
 
+			// postgresql
 			String sql = "select no, name, contents, "
-					+ "          date_format(reg_date, '%Y-%m-%d %h:%i:%s') " + 
+					+ "          to_char(reg_date, 'yyyy-mm-dd') " + 
 						" from guestbook " + 
 						" order by reg_date desc ";
+			
+			// mariadb
+//			String sql = "select no, name, contents, "
+//					+ "          date_format(reg_date, '%Y-%m-%d %h:%i:%s') " + 
+//					" from guestbook " + 
+//					" order by reg_date desc ";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -147,23 +158,39 @@ public class GuestbookDao {
 		return result;
 	}
 	
+	// postsql
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
-		
 		try {
-		
-			Class.forName("org.mariadb.jdbc.Driver");
-			String url = "jdbc:mariadb://192.168.1.52:3307/webdb";
+			Class.forName("org.postgresql.Driver");
+			String url = "jdbc:postgresql://192.168.1.52:5432/webdb";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
-
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
 		} finally {
 			
 		}
-
 		return conn;
-		
 	}
+	
+	// mariadb
+//	private Connection getConnection() throws SQLException {
+//		Connection conn = null;
+//		
+//		try {
+//		
+//			Class.forName("org.mariadb.jdbc.Driver");
+//			String url = "jdbc:mariadb://192.168.1.52:3307/webdb";
+//			conn = DriverManager.getConnection(url, "webdb", "webdb");
+//
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("드라이버 로딩 실패");
+//		} finally {
+//			
+//		}
+//
+//		return conn;
+//		
+//	}
 
 }
