@@ -137,7 +137,7 @@ public class UserDao {
 
 
 			String sql = " insert into member  " + 
-						"  values(default, ?, ?, ?, ?, now()) ";
+						"  values(default, ?, ?, ?, ?::enum_gender, now()) ";
 			
 			// mariadb
 //			String sql = " insert into user  " + 
